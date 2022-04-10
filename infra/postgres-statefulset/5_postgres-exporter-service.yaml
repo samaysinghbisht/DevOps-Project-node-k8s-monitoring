@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgexporter
+  namespace: db
+  labels:
+    app: pgexporter
+spec:
+  type: ClusterIP
+  ports:
+    - name: pgexporter
+      port: 9187
+      protocol: TCP
+      targetPort: pgexporter
+  selector:
+    app: postgres

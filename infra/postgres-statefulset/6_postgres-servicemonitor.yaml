@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: postgres-statefulset-pod-matrices
+  namespace: monitoring
+  labels:
+    release: stable
+spec:
+  namespaceSelector:
+    matchNames:
+      - db
+  endpoints:
+  - port: pgexporter
+    interval: 30s
+  selector:
+    matchLabels:
+      app: pgexporter

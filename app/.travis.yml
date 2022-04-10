@@ -1,0 +1,18 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before-install:
+  - echo "BEFORE INSTALL SCRIPTS WILL GO HERE"
+
+scripts:
+  - echo "TEST SCRIPTS WILL GO HERE"
+
+after_success:
+  - docker build -t samay1993/node_project .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push samay1993/node_project
+
+deploy:
+  - echo "DEPLOYMENT SCRIPTS WILL GO HERE"
